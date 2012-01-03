@@ -29,19 +29,21 @@ namespace PDFBookmarkReader
 			PdfReader pr = new PdfReader(file);
 			IList<Dictionary<string, object>> bookmarks = SimpleBookmark.GetBookmark(pr);
 			Console.WriteLine ("<PDF>\n\t<PageCount>{0}</PageCount>\n\t<Bookmarks Total=\"{1}\">\t", pr.NumberOfPages, bookmarks.Count);		
-			
-			foreach (Dictionary<string, object> bookmark in bookmarks)
-			{	
-				string title = (string)bookmark["Title"];
-				
-				title = _whitespaceRegex.Replace(title, " ");
-				string[] pageData = ((string)(bookmark["Page"])).Split(' ');
-				string page = pageData[0];
-				page = page.Trim();
-				
-				Console.WriteLine ("\t\t<Bookmark>\n\t\t\t<Title>{0}</Title>\n\t\t\t<Page>{1}</Page>\n\t\t</Bookmark>", title, page);	
-			}
-			
+
+		    if (bookmarks != null)
+            {
+                foreach (Dictionary<string, object> bookmark in bookmarks)
+                {	
+                    string title = (string)bookmark["Title"];
+
+                    title = _whitespaceRegex.Replace(title, " ");
+                    string[] pageData = ((string)(bookmark["Page"])).Split(' ');
+                    string page = pageData[0];
+                    page = page.Trim();
+
+                    Console.WriteLine ("\t\t<Bookmark>\n\t\t\t<Title>{0}</Title>\n\t\t\t<Page>{1}</Page>\n\t\t</Bookmark>", title, page);	
+                }
+            }
 			
 			Console.WriteLine("\t</Bookmarks>\n</PDF>");
 		}
