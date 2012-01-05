@@ -17,3 +17,7 @@ _ReSharper.*
 *.csproj.user
 *.resharper.user
 *.resharper
+*.Publish.xml
+UpgradeReport*.*
+UpgradeLog*.XML
+
